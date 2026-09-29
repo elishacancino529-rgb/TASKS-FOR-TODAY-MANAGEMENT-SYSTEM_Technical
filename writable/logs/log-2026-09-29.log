@@ -1,0 +1,86 @@
+ERROR - 2026-09-29 07:12:13 --> Error connecting to the database: mysqli_sql_exception: Access denied for user ''@'localhost' (using password: NO) in C:\Users\isha\tasks-today-project\vendor\codeigniter4\framework\system\Database\MySQLi\Connection.php:201
+Stack trace:
+#0 C:\Users\isha\tasks-today-project\vendor\codeigniter4\framework\system\Database\MySQLi\Connection.php(201): mysqli->real_connect('localhost', '', Object(SensitiveParameterValue), '', 3306, '', 0)
+#1 C:\Users\isha\tasks-today-project\vendor\codeigniter4\framework\system\Database\BaseConnection.php(555): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#2 C:\Users\isha\tasks-today-project\vendor\codeigniter4\framework\system\Database\BaseConnection.php(795): CodeIgniter\Database\BaseConnection->initialize()
+#3 C:\Users\isha\tasks-today-project\vendor\codeigniter4\framework\system\Database\BaseConnection.php(1706): CodeIgniter\Database\BaseConnection->query('SHOW TABLES FRO...')
+#4 C:\Users\isha\tasks-today-project\vendor\codeigniter4\framework\system\Database\BaseConnection.php(1726): CodeIgniter\Database\BaseConnection->listTables()
+#5 C:\Users\isha\tasks-today-project\vendor\codeigniter4\framework\system\Database\MigrationRunner.php(821): CodeIgniter\Database\BaseConnection->tableExists('migrations')
+#6 C:\Users\isha\tasks-today-project\vendor\codeigniter4\framework\system\Database\MigrationRunner.php(173): CodeIgniter\Database\MigrationRunner->ensureTable()
+#7 C:\Users\isha\tasks-today-project\vendor\codeigniter4\framework\system\Commands\Database\Migrate.php(89): CodeIgniter\Database\MigrationRunner->latest(NULL)
+#8 C:\Users\isha\tasks-today-project\vendor\codeigniter4\framework\system\CLI\SignalTrait.php(245): CodeIgniter\Commands\Database\Migrate::CodeIgniter\Commands\Database\{closure}()
+#9 C:\Users\isha\tasks-today-project\vendor\codeigniter4\framework\system\Commands\Database\Migrate.php(88): CodeIgniter\Commands\Database\Migrate->withSignalsBlocked(Object(Closure))
+#10 C:\Users\isha\tasks-today-project\vendor\codeigniter4\framework\system\CLI\Commands.php(72): CodeIgniter\Commands\Database\Migrate->run(Array)
+#11 C:\Users\isha\tasks-today-project\vendor\codeigniter4\framework\system\CLI\Console.php(47): CodeIgniter\CLI\Commands->run('migrate', Array)
+#12 C:\Users\isha\tasks-today-project\vendor\codeigniter4\framework\system\Boot.php(444): CodeIgniter\CLI\Console->run()
+#13 C:\Users\isha\tasks-today-project\vendor\codeigniter4\framework\system\Boot.php(166): CodeIgniter\Boot::runCommand(Object(CodeIgniter\CLI\Console))
+#14 C:\Users\isha\tasks-today-project\spark(87): CodeIgniter\Boot::bootSpark(Object(Config\Paths))
+#15 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Access denied for user ''@'localhost' (using password: NO) in C:\Users\isha\tasks-today-project\vendor\codeigniter4\framework\system\Database\MySQLi\Connection.php:231
+Stack trace:
+#0 C:\Users\isha\tasks-today-project\vendor\codeigniter4\framework\system\Database\BaseConnection.php(555): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#1 C:\Users\isha\tasks-today-project\vendor\codeigniter4\framework\system\Database\BaseConnection.php(795): CodeIgniter\Database\BaseConnection->initialize()
+#2 C:\Users\isha\tasks-today-project\vendor\codeigniter4\framework\system\Database\BaseConnection.php(1706): CodeIgniter\Database\BaseConnection->query('SHOW TABLES FRO...')
+#3 C:\Users\isha\tasks-today-project\vendor\codeigniter4\framework\system\Database\BaseConnection.php(1726): CodeIgniter\Database\BaseConnection->listTables()
+#4 C:\Users\isha\tasks-today-project\vendor\codeigniter4\framework\system\Database\MigrationRunner.php(821): CodeIgniter\Database\BaseConnection->tableExists('migrations')
+#5 C:\Users\isha\tasks-today-project\vendor\codeigniter4\framework\system\Database\MigrationRunner.php(173): CodeIgniter\Database\MigrationRunner->ensureTable()
+#6 C:\Users\isha\tasks-today-project\vendor\codeigniter4\framework\system\Commands\Database\Migrate.php(89): CodeIgniter\Database\MigrationRunner->latest(NULL)
+#7 C:\Users\isha\tasks-today-project\vendor\codeigniter4\framework\system\CLI\SignalTrait.php(245): CodeIgniter\Commands\Database\Migrate::CodeIgniter\Commands\Database\{closure}()
+#8 C:\Users\isha\tasks-today-project\vendor\codeigniter4\framework\system\Commands\Database\Migrate.php(88): CodeIgniter\Commands\Database\Migrate->withSignalsBlocked(Object(Closure))
+#9 C:\Users\isha\tasks-today-project\vendor\codeigniter4\framework\system\CLI\Commands.php(72): CodeIgniter\Commands\Database\Migrate->run(Array)
+#10 C:\Users\isha\tasks-today-project\vendor\codeigniter4\framework\system\CLI\Console.php(47): CodeIgniter\CLI\Commands->run('migrate', Array)
+#11 C:\Users\isha\tasks-today-project\vendor\codeigniter4\framework\system\Boot.php(444): CodeIgniter\CLI\Console->run()
+#12 C:\Users\isha\tasks-today-project\vendor\codeigniter4\framework\system\Boot.php(166): CodeIgniter\Boot::runCommand(Object(CodeIgniter\CLI\Console))
+#13 C:\Users\isha\tasks-today-project\spark(87): CodeIgniter\Boot::bootSpark(Object(Config\Paths))
+#14 {main}
+ERROR - 2026-09-29 07:14:37 --> Error connecting to the database: mysqli_sql_exception: Access denied for user ''@'localhost' (using password: NO) in C:\Users\isha\tasks-today-project\vendor\codeigniter4\framework\system\Database\MySQLi\Connection.php:201
+Stack trace:
+#0 C:\Users\isha\tasks-today-project\vendor\codeigniter4\framework\system\Database\MySQLi\Connection.php(201): mysqli->real_connect('localhost', '', Object(SensitiveParameterValue), '', 3306, '', 0)
+#1 C:\Users\isha\tasks-today-project\vendor\codeigniter4\framework\system\Database\BaseConnection.php(555): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#2 C:\Users\isha\tasks-today-project\vendor\codeigniter4\framework\system\Database\BaseConnection.php(795): CodeIgniter\Database\BaseConnection->initialize()
+#3 C:\Users\isha\tasks-today-project\vendor\codeigniter4\framework\system\Database\BaseConnection.php(1706): CodeIgniter\Database\BaseConnection->query('SHOW TABLES FRO...')
+#4 C:\Users\isha\tasks-today-project\vendor\codeigniter4\framework\system\Database\BaseConnection.php(1726): CodeIgniter\Database\BaseConnection->listTables()
+#5 C:\Users\isha\tasks-today-project\vendor\codeigniter4\framework\system\Database\MigrationRunner.php(821): CodeIgniter\Database\BaseConnection->tableExists('migrations')
+#6 C:\Users\isha\tasks-today-project\vendor\codeigniter4\framework\system\Database\MigrationRunner.php(173): CodeIgniter\Database\MigrationRunner->ensureTable()
+#7 C:\Users\isha\tasks-today-project\vendor\codeigniter4\framework\system\Commands\Database\Migrate.php(89): CodeIgniter\Database\MigrationRunner->latest(NULL)
+#8 C:\Users\isha\tasks-today-project\vendor\codeigniter4\framework\system\CLI\SignalTrait.php(245): CodeIgniter\Commands\Database\Migrate::CodeIgniter\Commands\Database\{closure}()
+#9 C:\Users\isha\tasks-today-project\vendor\codeigniter4\framework\system\Commands\Database\Migrate.php(88): CodeIgniter\Commands\Database\Migrate->withSignalsBlocked(Object(Closure))
+#10 C:\Users\isha\tasks-today-project\vendor\codeigniter4\framework\system\CLI\Commands.php(72): CodeIgniter\Commands\Database\Migrate->run(Array)
+#11 C:\Users\isha\tasks-today-project\vendor\codeigniter4\framework\system\CLI\Console.php(47): CodeIgniter\CLI\Commands->run('migrate', Array)
+#12 C:\Users\isha\tasks-today-project\vendor\codeigniter4\framework\system\Boot.php(444): CodeIgniter\CLI\Console->run()
+#13 C:\Users\isha\tasks-today-project\vendor\codeigniter4\framework\system\Boot.php(166): CodeIgniter\Boot::runCommand(Object(CodeIgniter\CLI\Console))
+#14 C:\Users\isha\tasks-today-project\spark(87): CodeIgniter\Boot::bootSpark(Object(Config\Paths))
+#15 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Access denied for user ''@'localhost' (using password: NO) in C:\Users\isha\tasks-today-project\vendor\codeigniter4\framework\system\Database\MySQLi\Connection.php:231
+Stack trace:
+#0 C:\Users\isha\tasks-today-project\vendor\codeigniter4\framework\system\Database\BaseConnection.php(555): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#1 C:\Users\isha\tasks-today-project\vendor\codeigniter4\framework\system\Database\BaseConnection.php(795): CodeIgniter\Database\BaseConnection->initialize()
+#2 C:\Users\isha\tasks-today-project\vendor\codeigniter4\framework\system\Database\BaseConnection.php(1706): CodeIgniter\Database\BaseConnection->query('SHOW TABLES FRO...')
+#3 C:\Users\isha\tasks-today-project\vendor\codeigniter4\framework\system\Database\BaseConnection.php(1726): CodeIgniter\Database\BaseConnection->listTables()
+#4 C:\Users\isha\tasks-today-project\vendor\codeigniter4\framework\system\Database\MigrationRunner.php(821): CodeIgniter\Database\BaseConnection->tableExists('migrations')
+#5 C:\Users\isha\tasks-today-project\vendor\codeigniter4\framework\system\Database\MigrationRunner.php(173): CodeIgniter\Database\MigrationRunner->ensureTable()
+#6 C:\Users\isha\tasks-today-project\vendor\codeigniter4\framework\system\Commands\Database\Migrate.php(89): CodeIgniter\Database\MigrationRunner->latest(NULL)
+#7 C:\Users\isha\tasks-today-project\vendor\codeigniter4\framework\system\CLI\SignalTrait.php(245): CodeIgniter\Commands\Database\Migrate::CodeIgniter\Commands\Database\{closure}()
+#8 C:\Users\isha\tasks-today-project\vendor\codeigniter4\framework\system\Commands\Database\Migrate.php(88): CodeIgniter\Commands\Database\Migrate->withSignalsBlocked(Object(Closure))
+#9 C:\Users\isha\tasks-today-project\vendor\codeigniter4\framework\system\CLI\Commands.php(72): CodeIgniter\Commands\Database\Migrate->run(Array)
+#10 C:\Users\isha\tasks-today-project\vendor\codeigniter4\framework\system\CLI\Console.php(47): CodeIgniter\CLI\Commands->run('migrate', Array)
+#11 C:\Users\isha\tasks-today-project\vendor\codeigniter4\framework\system\Boot.php(444): CodeIgniter\CLI\Console->run()
+#12 C:\Users\isha\tasks-today-project\vendor\codeigniter4\framework\system\Boot.php(166): CodeIgniter\Boot::runCommand(Object(CodeIgniter\CLI\Console))
+#13 C:\Users\isha\tasks-today-project\spark(87): CodeIgniter\Boot::bootSpark(Object(Config\Paths))
+#14 {main}
+ERROR - 2026-09-29 07:15:52 --> Duplicate entry 'demo_user' for key 'username'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 300.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(300): mysqli->query('INSERT INTO `users` (`username`, `full_name`, `email`, `created_at`) VALUES (\'demo_user\', \'Demo Student\', \'demo@example.com\', \'2026-09-29 07:15:52\')', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(908): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `users` (`username`, `full_name`, `email`, `created_at`) VALUES (\'demo_user\', \'Demo Student\', \'demo@example.com\', \'2026-09-29 07:15:52\')')
+ 3 SYSTEMPATH\Database\BaseConnection.php(825): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `users` (`username`, `full_name`, `email`, `created_at`) VALUES (\'demo_user\', \'Demo Student\', \'demo@example.com\', \'2026-09-29 07:15:52\')')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(2355): CodeIgniter\Database\BaseConnection->query('INSERT INTO `users` (`username`, `full_name`, `email`, `created_at`) VALUES (:username:, :full_name:, :email:, :created_at:)', [...], false)
+ 5 APPPATH\Database\Seeds\TasksSeeder.php(73): CodeIgniter\Database\BaseBuilder->insert([...])
+ 6 SYSTEMPATH\Database\Seeder.php(155): App\Database\Seeds\TasksSeeder->run()
+ 7 SYSTEMPATH\Commands\Database\Seed.php(79): CodeIgniter\Database\Seeder->call('App\\Database\\Seeds\\TasksSeeder')
+ 8 SYSTEMPATH\CLI\Commands.php(72): CodeIgniter\Commands\Database\Seed->run([])
+ 9 SYSTEMPATH\CLI\Console.php(47): CodeIgniter\CLI\Commands->run('db:seed', [...])
+10 SYSTEMPATH\Boot.php(444): CodeIgniter\CLI\Console->run()
+11 SYSTEMPATH\Boot.php(166): CodeIgniter\Boot::runCommand(Object(CodeIgniter\CLI\Console))
+12 ROOTPATH\spark(87): CodeIgniter\Boot::bootSpark(Object(Config\Paths))
