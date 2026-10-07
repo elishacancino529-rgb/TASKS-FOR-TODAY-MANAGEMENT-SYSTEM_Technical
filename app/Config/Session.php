@@ -5,9 +5,18 @@ namespace Config;
 use CodeIgniter\Config\BaseConfig;
 use CodeIgniter\Session\Handlers\BaseHandler;
 use CodeIgniter\Session\Handlers\FileHandler;
+use CodeIgniter\Session\Handlers\DatabaseHandler;
 
 class Session extends BaseConfig
 {
+    public function __construct()
+    {
+        parent::__construct();
+        if (getenv('VERCEL')) {
+            $this->driver = DatabaseHandler::class;
+            $this->savePath = 'ci_sessions';
+        }
+    }
     /**
      * --------------------------------------------------------------------------
      * Session Driver

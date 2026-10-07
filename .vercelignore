@@ -1,0 +1,10 @@
+.env
+.env.*
+!.env.example
+.git
+vendor
+vendor.zip
+writable/cache/*
+writable/logs/*
+writable/session/*
+writable/debugbar/*

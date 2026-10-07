@@ -6,6 +6,16 @@ use CodeIgniter\Config\BaseConfig;
 
 class App extends BaseConfig
 {
+    public function __construct()
+    {
+        parent::__construct();
+        $vercelHost = getenv('VERCEL_ENV') === 'production'
+            ? (getenv('VERCEL_PROJECT_PRODUCTION_URL') ?: getenv('VERCEL_URL'))
+            : getenv('VERCEL_URL');
+        if (getenv('VERCEL') && is_string($vercelHost) && $vercelHost !== '') {
+            $this->baseURL = 'https://' . $vercelHost . '/';
+        }
+    }
     /**
      * --------------------------------------------------------------------------
      * Base Site URL

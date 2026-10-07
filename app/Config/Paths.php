@@ -18,6 +18,17 @@ namespace Config;
  */
 class Paths
 {
+    public function __construct()
+    {
+        if (getenv('VERCEL')) {
+            $this->writableDirectory = sys_get_temp_dir() . '/todayline-writable';
+            foreach (['cache', 'logs', 'session', 'debugbar'] as $directory) {
+                if (! is_dir($this->writableDirectory . '/' . $directory)) {
+                    mkdir($this->writableDirectory . '/' . $directory, 0775, true);
+                }
+            }
+        }
+    }
     /**
      * ---------------------------------------------------------------
      * SYSTEM FOLDER NAME

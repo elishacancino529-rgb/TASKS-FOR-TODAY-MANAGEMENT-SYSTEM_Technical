@@ -42,6 +42,9 @@ $RECYCLE.BIN/
 # These should never be under version control,
 # as it poses a security risk.
 .env
+.env.*
+!.env.example
+.vercel/
 .vagrant
 Vagrantfile
 
@@ -117,10 +120,13 @@ _modules/*
 *.sublime-workspace
 *.sublime-project
 .phpintel
-/api/
+!/api/
 
 # Visual Studio Code
 .vscode/
 
 /results/
 /phpunit.xml
+
+.vercel
+.env*

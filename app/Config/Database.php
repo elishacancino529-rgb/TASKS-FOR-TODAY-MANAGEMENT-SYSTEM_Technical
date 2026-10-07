@@ -194,6 +194,28 @@ class Database extends Config
     {
         parent::__construct();
 
+        // Neon injects a PostgreSQL URL into the Vercel function environment.
+        // Keep the existing MySQL settings for local development and TSA1 upgrades.
+        $databaseUrl = getenv('DATABASE_URL') ?: getenv('POSTGRES_URL');
+        if (getenv('VERCEL') && is_string($databaseUrl) && $databaseUrl !== '') {
+            $url = preg_replace('/^postgres(?:ql)?:/i', 'Postgre:', $databaseUrl);
+            if (! str_contains($url, 'sslmode=')) {
+                $url .= (str_contains($url, '?') ? '&' : '?') . 'sslmode=require';
+            }
+            // The PHP 8.2 runtime may use a libpq version without Neon SNI.
+            // Pass the endpoint explicitly so both pooled and direct URLs work.
+            $host = parse_url($url, PHP_URL_HOST);
+            if (is_string($host) && str_ends_with($host, '.neon.tech') && ! str_contains($url, 'options=')) {
+                $endpoint = explode('.', $host)[0];
+                $endpoint = preg_replace('/-pooler$/', '', $endpoint);
+                $url .= '&options=' . rawurlencode('endpoint=' . $endpoint);
+            }
+            $this->default['DSN'] = $url;
+            $this->default['DBDriver'] = 'Postgre';
+            $this->default['charset'] = 'utf8';
+            $this->default['pConnect'] = false;
+        }
+
         // Ensure that we always set the database group to 'tests' if
         // we are currently running an automated test suite, so that
         // we don't overwrite live data on accident.

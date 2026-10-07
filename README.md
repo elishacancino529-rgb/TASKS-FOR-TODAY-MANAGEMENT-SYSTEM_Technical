@@ -58,6 +58,17 @@ Only explicit routes are enabled, so alternate controller URLs cannot bypass the
 
 ## Deployment
 
-Use PHP hosting that supports CodeIgniter 4 and MySQL/MariaDB. Upload the repository source, run `composer install --no-dev`, create a database, configure `.env` with the site's HTTPS `app.baseURL` and database credentials, then run `php spark migrate` and `php spark db:seed TasksSeeder`. For an existing TSA1 database, use its current connection settings and run the same two commands; the upgrade migration retains its users and tasks. Set the web server's document root to `public/`, make `writable/` writable by PHP, and set `CI_ENVIRONMENT = production` in `.env` after confirming the site works. Choose a private `DEMO_PASSWORD` before seeding and remove the demo credential hint from `app/Views/auth/login.php` for a public deployment.
+For conventional PHP hosting, use CodeIgniter 4 with MySQL/MariaDB. Upload the repository source, run `composer install --no-dev`, create a database, configure `.env` with the site's HTTPS `app.baseURL` and database credentials, then run `php spark migrate` and `php spark db:seed TasksSeeder`. For an existing TSA1 database, use its current connection settings and run the same two commands; the upgrade migration retains its users and tasks. Set the web server's document root to `public/`, make `writable/` writable by PHP, and set `CI_ENVIRONMENT = production` in `.env` after confirming the site works.
 
-The coursework submission asks for a GitHub repository URL and a hosted application URL. Add both links to the submission after uploading this source and deploying it to your hosting account.
+### Vercel with Neon Postgres
+
+The repository includes a Vercel PHP function in `api/index.php`, routing and static asset configuration in `vercel.json`, and a database-backed session migration. Vercel's serverless filesystem is temporary, so a persistent Postgres database is required for users, tasks, and sessions.
+
+1. Create a Vercel project for this repository and connect a Neon Postgres resource to its Production and Preview environments. Choose a region close to the app's users. Neon supplies `DATABASE_URL` automatically when installed through Vercel Marketplace.
+2. Add `CI_ENVIRONMENT=production` to the Production and Preview environment variables. Vercel supplies `VERCEL`, `VERCEL_URL`, and `VERCEL_PROJECT_PRODUCTION_URL` automatically. The app uses them to select Postgres, database sessions, a temporary writable directory, and the public URL.
+3. Pull the database URL to a private local environment file, or obtain it from the Neon dashboard. With PHP's `pgsql` extension enabled, set `VERCEL=1` and `DATABASE_URL` in the shell, then run `php spark migrate` and `php spark db:seed TasksSeeder`. Do not commit the database URL or a pulled environment file.
+4. Deploy with `vercel deploy --prod`, then check the home page, login, task creation, editing, and archiving on the public URL.
+
+The free classroom demo credentials are shown on the login page. For real use, set a private `DEMO_PASSWORD` before seeding and remove the credential hint from `app/Views/auth/login.php`.
+
+The coursework submission asks for a GitHub repository URL and a hosted application URL. Include both working links in the submission.
