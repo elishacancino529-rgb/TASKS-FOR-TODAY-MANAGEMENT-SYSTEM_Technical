@@ -3,51 +3,100 @@
 namespace App\Controllers;
 
 use App\Models\TaskModel;
-use App\Models\UserModel;
+use CodeIgniter\Exceptions\PageNotFoundException;
 
 class Tasks extends BaseController
 {
     public function index()
     {
-        $taskModel = new TaskModel();
+        $status = (string) $this->request->getGet('status');
+        $validStatuses = ['To do', 'In progress', 'Done'];
+        $model = (new TaskModel())->active();
+        if (in_array($status, $validStatuses, true)) {
+            $model->where('status', $status);
+        } else {
+            $status = '';
+        }
 
-        $tasks = $taskModel
-            ->where('task_date', date('Y-m-d'))
-            ->orderBy('created_at', 'ASC')
-            ->findAll();
-
-        return view('tasks/today', [
-            'tasks' => $tasks,
+        return view('tasks/index', [
+            'pageTitle' => 'All tasks',
+            'tasks' => $model->orderBy('task_date', 'ASC')->orderBy('id', 'DESC')->findAll(),
+            'statusFilter' => $status,
         ]);
     }
 
-    public function taskList()
+    public function new()
     {
-        $taskModel = new TaskModel();
+        return view('tasks/form', ['pageTitle' => 'New task', 'task' => null, 'formAction' => site_url('tasks')]);
+    }
 
-        $tasks = $taskModel
-            ->orderBy('task_date', 'ASC')
-            ->orderBy('id', 'ASC')
-            ->findAll();
+    public function create()
+    {
+        $data = $this->taskData();
+        if (! $this->validateData($data, $this->taskRules())) {
+            return redirect()->to('/tasks/new')->withInput()->with('errors', $this->validator->getErrors());
+        }
+        $data['user_id'] = (int) session('user_id');
+        (new TaskModel())->insert($data);
+        return redirect()->to('/tasks')->with('success', 'Task created.');
+    }
 
-        return view('tasks/list', [
-            'tasks' => $tasks,
+    public function edit(int $id)
+    {
+        $task = $this->ownedTask($id);
+        return view('tasks/form', [
+            'pageTitle' => 'Edit task',
+            'task' => $task,
+            'formAction' => site_url('tasks/' . $id),
         ]);
     }
 
-    public function profile()
+    public function update(int $id)
     {
-        $userModel = new UserModel();
-
-        $user = $userModel->first();
-
-        return view('tasks/profile', [
-            'user' => $user,
-        ]);
+        $this->ownedTask($id);
+        $data = $this->taskData();
+        if (! $this->validateData($data, $this->taskRules())) {
+            return redirect()->to('/tasks/' . $id . '/edit')->withInput()->with('errors', $this->validator->getErrors());
+        }
+        (new TaskModel())->update($id, $data);
+        return redirect()->to('/tasks')->with('success', 'Task updated.');
     }
 
-    public function about()
+    public function archive(int $id)
     {
-        return view('tasks/about');
+        $this->ownedTask($id);
+        (new TaskModel())->update($id, ['is_archived' => 1]);
+        return redirect()->to('/tasks')->with('success', 'Task archived.');
+    }
+
+    private function ownedTask(int $id): array
+    {
+        $task = (new TaskModel())->active()->where('user_id', (int) session('user_id'))->find($id);
+        if (! $task) {
+            throw PageNotFoundException::forPageNotFound('Task not found.');
+        }
+        return $task;
+    }
+
+    private function taskData(): array
+    {
+        return [
+            'title' => trim((string) $this->request->getPost('title')),
+            'description' => trim((string) $this->request->getPost('description')),
+            'task_date' => trim((string) $this->request->getPost('task_date')),
+            'priority' => (string) $this->request->getPost('priority'),
+            'status' => (string) $this->request->getPost('status'),
+        ];
+    }
+
+    private function taskRules(): array
+    {
+        return [
+            'title' => 'required|max_length[180]',
+            'description' => 'permit_empty|max_length[2000]',
+            'task_date' => 'required|valid_date[Y-m-d]',
+            'priority' => 'required|in_list[Low,Normal,High]',
+            'status' => 'required|in_list[To do,In progress,Done]',
+        ];
     }
 }
