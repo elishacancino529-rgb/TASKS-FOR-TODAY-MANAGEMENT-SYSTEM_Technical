@@ -65,7 +65,7 @@ class Tasks extends BaseController
     public function archive(int $id)
     {
         $this->ownedTask($id);
-        (new TaskModel())->update($id, ['is_archived' => 1]);
+        (new TaskModel())->update($id, ['is_archived' => true]);
         return redirect()->to('/tasks')->with('success', 'Task archived.');
     }
 

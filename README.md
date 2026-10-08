@@ -71,4 +71,7 @@ The repository includes a Vercel PHP function in `api/index.php`, routing and st
 
 The free classroom demo credentials are shown on the login page. For real use, set a private `DEMO_PASSWORD` before seeding and remove the credential hint from `app/Views/auth/login.php`.
 
-The coursework submission asks for a GitHub repository URL and a hosted application URL. Include both working links in the submission.
+Coursework submission links:
+
+- GitHub repository: https://github.com/elishacancino529-rgb/TASKS-FOR-TODAY-MANAGEMENT-SYSTEM_Technical
+- Hosted application: https://todayline-tasks.vercel.app/

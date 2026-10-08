@@ -202,14 +202,6 @@ class Database extends Config
             if (! str_contains($url, 'sslmode=')) {
                 $url .= (str_contains($url, '?') ? '&' : '?') . 'sslmode=require';
             }
-            // The PHP 8.2 runtime may use a libpq version without Neon SNI.
-            // Pass the endpoint explicitly so both pooled and direct URLs work.
-            $host = parse_url($url, PHP_URL_HOST);
-            if (is_string($host) && str_ends_with($host, '.neon.tech') && ! str_contains($url, 'options=')) {
-                $endpoint = explode('.', $host)[0];
-                $endpoint = preg_replace('/-pooler$/', '', $endpoint);
-                $url .= '&options=' . rawurlencode('endpoint=' . $endpoint);
-            }
             $this->default['DSN'] = $url;
             $this->default['DBDriver'] = 'Postgre';
             $this->default['charset'] = 'utf8';

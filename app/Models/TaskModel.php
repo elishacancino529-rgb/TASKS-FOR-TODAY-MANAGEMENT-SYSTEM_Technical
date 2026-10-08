@@ -14,6 +14,6 @@ class TaskModel extends Model
 
     public function active(): self
     {
-        return $this->where('is_archived', 0);
+        return $this->where('is_archived', false);
     }
 }

@@ -39,10 +39,10 @@ class TasksSeeder extends Seeder
 
         $today = date('Y-m-d');
         $tasks->insertBatch([
-            ['user_id' => $userId, 'title' => 'Plan the week ahead', 'description' => 'Choose the three priorities that deserve your attention.', 'task_date' => $today, 'priority' => 'High', 'status' => 'In progress', 'is_archived' => 0, 'created_at' => $now],
-            ['user_id' => $userId, 'title' => 'Review project notes', 'description' => 'Collect feedback and prepare the next steps.', 'task_date' => $today, 'priority' => 'Normal', 'status' => 'To do', 'is_archived' => 0, 'created_at' => $now],
-            ['user_id' => $userId, 'title' => 'Send the final update', 'description' => 'Share a concise progress summary with the team.', 'task_date' => $today, 'priority' => 'Low', 'status' => 'Done', 'is_archived' => 0, 'created_at' => $now],
-            ['user_id' => $userId, 'title' => 'Organize the design files', 'description' => 'Keep the latest assets easy to find.', 'task_date' => date('Y-m-d', strtotime('+1 day')), 'priority' => 'Normal', 'status' => 'To do', 'is_archived' => 0, 'created_at' => $now],
+            ['user_id' => $userId, 'title' => 'Plan the week ahead', 'description' => 'Choose the three priorities that deserve your attention.', 'task_date' => $today, 'priority' => 'High', 'status' => 'In progress', 'is_archived' => false, 'created_at' => $now],
+            ['user_id' => $userId, 'title' => 'Review project notes', 'description' => 'Collect feedback and prepare the next steps.', 'task_date' => $today, 'priority' => 'Normal', 'status' => 'To do', 'is_archived' => false, 'created_at' => $now],
+            ['user_id' => $userId, 'title' => 'Send the final update', 'description' => 'Share a concise progress summary with the team.', 'task_date' => $today, 'priority' => 'Low', 'status' => 'Done', 'is_archived' => false, 'created_at' => $now],
+            ['user_id' => $userId, 'title' => 'Organize the design files', 'description' => 'Keep the latest assets easy to find.', 'task_date' => date('Y-m-d', strtotime('+1 day')), 'priority' => 'Normal', 'status' => 'To do', 'is_archived' => false, 'created_at' => $now],
         ]);
     }
 }
